@@ -23,6 +23,28 @@ such as `latin1` and `cp1252` work too.
 
 ## Install
 
+### Download a binary
+
+Prebuilt binaries for macOS, Linux and Windows (x86-64 and arm64) are attached
+to each [release](https://github.com/breedeweg/decode-subject/releases/latest).
+They need no Go installation. Download the archive for your platform, extract
+it and put `decode-subject` somewhere on your `PATH`.
+
+Verify a download against the release's `checksums.txt`:
+
+```sh
+shasum -a 256 -c checksums.txt --ignore-missing
+```
+
+The macOS binaries are not signed. If you download one with a browser and
+macOS refuses to run it, remove the quarantine flag:
+
+```sh
+xattr -d com.apple.quarantine decode-subject
+```
+
+### Install with Go
+
 Requires Go 1.26 or later.
 
 ```sh
