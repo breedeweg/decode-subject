@@ -28,3 +28,16 @@ The README documents these and tests cover them, so keep them stable:
 - Unparseable message or unsupported charset → error on stderr, exit 1.
 
 Tests in `decode-subject_test.go` are table-driven: add new charset/encoding cases as rows in `TestDecodeSubject` and failure cases in `TestDecodeSubjectErrors`.
+
+## Releasing
+
+Pushing a `v*` tag runs `.github/workflows/release.yml`, which uses GoReleaser (`.goreleaser.yaml`) to run vet and tests, build the six OS/arch archives plus `checksums.txt`, and publish the GitHub release. The release notes are the annotated tag's message (everything after its first line) followed by a templated download/install section, so write the changes into the tag:
+
+```sh
+git tag -a v0.1.2 -m "v0.1.2" -m "## Changes
+
+- ..."
+git push origin v0.1.2
+```
+
+Dry-run locally with `goreleaser release --snapshot --clean` (output in the gitignored `dist/`).
